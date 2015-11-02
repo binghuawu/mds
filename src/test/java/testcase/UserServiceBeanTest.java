@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import conf.TestConfig;
 import data.Application;
-import data.domain.User;
+import data.domain.a.User;
 import data.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,15 +32,16 @@ public class UserServiceBeanTest {
 	private Resource dataScript;
 
 	@Autowired
+	@Qualifier("dataSource")
 	DataSource dataSource;
 
 	@Autowired
 	@Qualifier("u1")
-	UserService userService;
+	UserService<data.domain.a.User> userService;
 
 	@Autowired
 	@Qualifier("u2")
-	UserService userCrudService;
+	UserService<data.domain.b.User> userCrudService;
 
 	final Logger LOG = LoggerFactory.getLogger(UserServiceBeanTest.class);
 
@@ -60,6 +61,7 @@ public class UserServiceBeanTest {
 		Assert.assertNotNull(u.getId());
 
 		Assert.assertNull(userCrudService.findOne(u.getId()));
+		Assert.assertNotNull(userService.findOne(u.getId()));
 	}
 
 	@Test

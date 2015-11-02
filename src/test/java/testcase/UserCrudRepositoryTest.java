@@ -18,8 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import conf.TestConfig;
 import data.Application;
-import data.dao.UserCrudRepository;
-import data.domain.User;
+import data.dao.a.ARepository;
+import data.dao.b.BRepository;
+import data.domain.a.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { Application.class, TestConfig.class })
@@ -32,7 +33,10 @@ public class UserCrudRepositoryTest {
 	private Resource dataScript;
 
 	@Autowired
-	UserCrudRepository crudRepo;
+	ARepository crudRepo;
+
+	@Autowired
+	BRepository bRepo;
 
 	@Autowired
 	DataSource dataSource;
@@ -53,6 +57,7 @@ public class UserCrudRepositoryTest {
 		u.setName("test 1");
 		u = crudRepo.save(u);
 		Assert.assertNotNull(u.getId());
+
 	}
 
 	@Test

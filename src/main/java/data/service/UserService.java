@@ -2,15 +2,13 @@ package data.service;
 
 import java.util.List;
 
-import data.domain.User;
+public interface UserService<T> {
 
-public interface UserService {
+	List<T> getAll();
 
-	List<User> getAll();
+	T findOne(Long id);
 
-	User findOne(Long id);
-
-	User create(User u);
+	T create(T u);
 
 	void updateProfile(Long id, String newName);
 }

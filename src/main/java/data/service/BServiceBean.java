@@ -8,14 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import data.dao.UserJPARepository;
-import data.domain.User;
+import data.dao.b.BRepository;
+import data.domain.b.User;
 
-@Service("u1")
-public class UserServiceBean implements UserService {
+@Service("u2")
+@Transactional(value = "transactionManagerB")
+public class BServiceBean implements UserService<User> {
 
 	@Autowired
-	private UserJPARepository jpaRepo;
+	private BRepository jpaRepo;
 
 	@Override
 	public List<User> getAll() {

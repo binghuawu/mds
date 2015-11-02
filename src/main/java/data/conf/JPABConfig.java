@@ -6,7 +6,6 @@ import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -14,29 +13,27 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
-import data.domain.a.User;
+import data.domain.b.User;
 
 @Configuration
-@EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory", transactionManagerRef = "transactionManager", basePackages = {
-		"data.domain.a", "data.dao.a" })
-public class JPAConfig {
+@EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactoryB", transactionManagerRef = "transactionManagerB", basePackages = {
+		"data.domain.b", "data.dao.b" })
+public class JPABConfig {
 
-	@Primary
 	@Bean
-	public DataSource dataSource() {
+	public DataSource dataSourceB() {
 		SimpleDriverDataSource ds = new SimpleDriverDataSource();
 
 		ds.setDriverClass(org.h2.Driver.class);
-		ds.setUrl("jdbc:h2:tcp://localhost/~/test");
+		ds.setUrl("jdbc:h2:tcp://localhost/~/testB");
 		ds.setUsername("sa");
 		return ds;
 	}
 
-	@Primary
-	@Bean(name = "entityManagerFactory")
-	public LocalContainerEntityManagerFactoryBean localContainerEMF() {
+	@Bean(name = "entityManagerFactoryB")
+	public LocalContainerEntityManagerFactoryBean localContainerEMFB() {
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
-		emf.setDataSource(dataSource());
+		emf.setDataSource(dataSourceB());
 		emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 		emf.setJpaDialect(new HibernateJpaDialect());
 		// hibernate specific properties
@@ -56,16 +53,14 @@ public class JPAConfig {
 
 		// we're configuring JPA without persistence.xml
 		emf.setPackagesToScan(User.class.getPackage().getName());
-		emf.setPersistenceUnitName("PU-A");
+		emf.setPersistenceUnitName("PU-B");
 		return emf;
 	}
 
-	@Primary
-	@Bean(name = "transactionManager")
-	public JpaTransactionManager jpaTransactionManager() {
+	@Bean(name = "transactionManagerB")
+	public JpaTransactionManager jpaTransactionManagerB() {
 		JpaTransactionManager tm = new JpaTransactionManager();
-		tm.setEntityManagerFactory(localContainerEMF().getObject());
+		tm.setEntityManagerFactory(localContainerEMFB().getObject());
 		return tm;
 	}
-
 }

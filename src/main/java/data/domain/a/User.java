@@ -1,4 +1,4 @@
-package data.domain;
+package data.domain.a;
 
 import java.io.Serializable;
 import java.util.Set;

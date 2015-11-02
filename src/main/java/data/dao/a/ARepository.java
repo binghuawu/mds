@@ -1,12 +1,12 @@
-package data.dao;
+package data.dao.a;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import data.domain.User;
+import data.domain.a.User;
 
-public interface UserCrudRepository extends CrudRepository<User, Long> {
+public interface ARepository extends CrudRepository<User, Long> {
 
 	/**
 	 * This follows the naming convention of Spring Data repository.

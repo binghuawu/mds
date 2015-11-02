@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import data.dao.UserCrudRepository;
-import data.domain.User;
+import data.dao.a.ARepository;
+import data.domain.a.User;
 
-@Service("u2")
-@Transactional("transactionManagerB")
-public class CrudUserServiceBean implements UserService {
+@Service("u1")
+@Transactional("transactionManager")
+public class AServiceBean implements UserService<User> {
 
 	@Autowired
-	private UserCrudRepository crudRepo;
+	private ARepository crudRepo;
 
 	@Override
 	public List<User> getAll() {
