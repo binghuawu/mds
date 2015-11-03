@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import data.domain.a.User;
+import data.domain.a.AUser;
 import data.service.UserService;
 
 @RestController
@@ -23,10 +23,10 @@ public class UserController {
 
 	@Autowired
 	@Qualifier("u1")
-	UserService userService;
+	UserService<AUser> userService;
 
 	@RequestMapping("/users")
-	public List<User> getAllUsers(Locale locale, Model model,
+	public List<AUser> getAllUsers(Locale locale, Model model,
 			HttpServletRequest r) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 

@@ -14,7 +14,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
-import data.domain.a.User;
+import data.domain.a.AUser;
 
 @Configuration
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory", transactionManagerRef = "transactionManager", basePackages = {
@@ -55,7 +55,7 @@ public class JPAConfig {
 		emf.setJpaProperties(p);
 
 		// we're configuring JPA without persistence.xml
-		emf.setPackagesToScan(User.class.getPackage().getName());
+		emf.setPackagesToScan(AUser.class.getPackage().getName());
 		emf.setPersistenceUnitName("PU-A");
 		return emf;
 	}

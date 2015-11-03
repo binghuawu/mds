@@ -21,7 +21,7 @@ public class UserDetail implements Serializable {
 	@Id
 	@OneToOne
 	@JoinColumn(name = "user_id")
-	private User user;
+	private BUser user;
 
 	@Column(name = "addr", length = 20, nullable = false)
 	private String addr;
@@ -45,11 +45,11 @@ public class UserDetail implements Serializable {
 		this.gender = gender;
 	}
 
-	public User getUser() {
+	public BUser getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(BUser user) {
 		this.user = user;
 	}
 }

@@ -24,7 +24,7 @@ public class Projects implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private User user;
+	private BUser user;
 
 	public Project getPrj() {
 		return prj;
@@ -34,11 +34,11 @@ public class Projects implements Serializable {
 		this.prj = prj;
 	}
 
-	public User getUser() {
+	public BUser getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(BUser user) {
 		this.user = user;
 	}
 }

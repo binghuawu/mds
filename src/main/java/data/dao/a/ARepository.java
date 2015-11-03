@@ -4,9 +4,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import data.domain.a.User;
+import data.domain.a.AUser;
 
-public interface ARepository extends CrudRepository<User, Long> {
+public interface ARepository extends CrudRepository<AUser, Long> {
 
 	/**
 	 * This follows the naming convention of Spring Data repository.
@@ -14,7 +14,7 @@ public interface ARepository extends CrudRepository<User, Long> {
 	 * @param nameToFind
 	 * @return
 	 */
-	User findByName(String nameToFind);
+	AUser findByName(String nameToFind);
 
 	/**
 	 * Uses JPQL.
@@ -22,8 +22,8 @@ public interface ARepository extends CrudRepository<User, Long> {
 	 * @param nameToFind
 	 * @return
 	 */
-	@Query("SELECT u FROM User AS u where u.name=:name")
-	User findByNameJPQL(@Param("name") String nameToFind);
+	@Query("SELECT u FROM AUser AS u where u.name=:name")
+	AUser findByNameJPQL(@Param("name") String nameToFind);
 
 	@Query(value = "SELECT count(1) FROM t_user WHERE user_name=:name", nativeQuery = true)
 	Long countByNameNative(@Param("name") String nameToFind);

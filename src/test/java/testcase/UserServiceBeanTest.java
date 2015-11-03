@@ -13,12 +13,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.core.io.Resource;
+import org.springframework.dao.InvalidDataAccessResourceUsageException;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import conf.TestConfig;
 import data.Application;
-import data.domain.a.User;
+import data.domain.a.AUser;
 import data.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -37,11 +38,11 @@ public class UserServiceBeanTest {
 
 	@Autowired
 	@Qualifier("u1")
-	UserService<data.domain.a.User> userService;
+	UserService<data.domain.a.AUser> userAService;
 
 	@Autowired
 	@Qualifier("u2")
-	UserService<data.domain.b.User> userCrudService;
+	UserService<data.domain.b.BUser> userBService;
 
 	final Logger LOG = LoggerFactory.getLogger(UserServiceBeanTest.class);
 
@@ -53,22 +54,22 @@ public class UserServiceBeanTest {
 		populator.execute(dataSource);
 	}
 
-	@Test
+	@Test(expected = InvalidDataAccessResourceUsageException.class)
 	public void testSaveUser() {
-		User u = new User();
+		AUser u = new AUser();
 		u.setName("test 1");
-		u = userService.create(u);
+		u = userAService.create(u);
 		Assert.assertNotNull(u.getId());
-
-		Assert.assertNull(userCrudService.findOne(u.getId()));
-		Assert.assertNotNull(userService.findOne(u.getId()));
+		Assert.assertNotNull(userAService.findOne(u.getId()));
+		// this should fail because it isn't the same datasource
+		Assert.assertNull(userBService.findOne(u.getId()));
 	}
 
 	@Test
 	public void testUpdateProfile() {
-		final User u = userService.findOne(1L);
+		final AUser u = userAService.findOne(1L);
 		Assert.assertNotNull(u);
-		userService.updateProfile(u.getId(), "new name 123");
-		Assert.assertEquals("new name 123", userService.findOne(1L).getName());
+		userAService.updateProfile(u.getId(), "new name 123");
+		Assert.assertEquals("new name 123", userAService.findOne(1L).getName());
 	}
 }

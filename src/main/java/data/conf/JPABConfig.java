@@ -13,7 +13,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
-import data.domain.b.User;
+import data.domain.b.BUser;
 
 @Configuration
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactoryB", transactionManagerRef = "transactionManagerB", basePackages = {
@@ -52,7 +52,7 @@ public class JPABConfig {
 		emf.setJpaProperties(p);
 
 		// we're configuring JPA without persistence.xml
-		emf.setPackagesToScan(User.class.getPackage().getName());
+		emf.setPackagesToScan(BUser.class.getPackage().getName());
 		emf.setPersistenceUnitName("PU-B");
 		return emf;
 	}

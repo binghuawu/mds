@@ -9,19 +9,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import data.dao.b.BRepository;
-import data.domain.b.User;
+import data.domain.b.BUser;
 
 @Service("u2")
 @Transactional(value = "transactionManagerB")
-public class BServiceBean implements UserService<User> {
+public class BServiceBean implements UserService<BUser> {
 
 	@Autowired
 	private BRepository jpaRepo;
 
 	@Override
-	public List<User> getAll() {
-		List<User> list = new ArrayList<User>();
-		Iterator<User> it = jpaRepo.findAll().iterator();
+	public List<BUser> getAll() {
+		List<BUser> list = new ArrayList<BUser>();
+		Iterator<BUser> it = jpaRepo.findAll().iterator();
 		while (it.hasNext()) {
 			list.add(it.next());
 		}
@@ -32,19 +32,19 @@ public class BServiceBean implements UserService<User> {
 	@Override
 	@Transactional
 	public void updateProfile(Long id, String newName) {
-		User one = jpaRepo.findOne(id);
+		BUser one = jpaRepo.findOne(id);
 		one.setName(newName);
 		jpaRepo.save(one);
 	}
 
 	@Override
 	// @Transactional("transactionManager")
-	public User create(User u) {
+	public BUser create(BUser u) {
 		return jpaRepo.save(u);
 	}
 
 	@Override
-	public User findOne(Long id) {
+	public BUser findOne(Long id) {
 		return jpaRepo.findOne(id);
 	}
 

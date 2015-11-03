@@ -1,5 +1,7 @@
 package data.service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,36 +9,41 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import data.dao.a.ARepository;
-import data.domain.a.User;
+import data.domain.a.AUser;
 
 @Service("u1")
 @Transactional("transactionManager")
-public class AServiceBean implements UserService<User> {
+public class AServiceBean implements UserService<AUser> {
 
 	@Autowired
 	private ARepository crudRepo;
 
 	@Override
-	public List<User> getAll() {
-		return null;
+	public List<AUser> getAll() {
+		List<AUser> list = new ArrayList<AUser>();
+		Iterator<AUser> it = crudRepo.findAll().iterator();
+		while (it.hasNext()) {
+			list.add(it.next());
+		}
+		return list;
 	}
 
 	@Override
 	@Transactional
 	public void updateProfile(Long id, String newName) {
-		User one = crudRepo.findOne(id);
+		AUser one = crudRepo.findOne(id);
 		one.setName(newName);
 		crudRepo.save(one);
 	}
 
 	@Override
 	// @Transactional("transactionManager")
-	public User create(User u) {
+	public AUser create(AUser u) {
 		return crudRepo.save(u);
 	}
 
 	@Override
-	public User findOne(Long id) {
+	public AUser findOne(Long id) {
 		return crudRepo.findOne(id);
 	}
 

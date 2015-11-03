@@ -20,7 +20,7 @@ import conf.TestConfig;
 import data.Application;
 import data.dao.a.ARepository;
 import data.dao.b.BRepository;
-import data.domain.a.User;
+import data.domain.a.AUser;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { Application.class, TestConfig.class })
@@ -53,7 +53,7 @@ public class UserCrudRepositoryTest {
 
 	@Test
 	public void testSaveUser() {
-		User u = new User();
+		AUser u = new AUser();
 		u.setName("test 1");
 		u = crudRepo.save(u);
 		Assert.assertNotNull(u.getId());
@@ -62,7 +62,7 @@ public class UserCrudRepositoryTest {
 
 	@Test
 	public void testFindByName() {
-		User u = crudRepo.findByNameJPQL("bob");
+		AUser u = crudRepo.findByNameJPQL("bob");
 		Assert.assertNotNull(u);
 		// Assert.assertEquals(2, u.getProjects().size());
 		Assert.assertEquals("M", u.getDetail().getGender());
@@ -79,12 +79,12 @@ public class UserCrudRepositoryTest {
 	// "no session" error.
 	@Transactional
 	public void testLazyFetch() {
-		User u = crudRepo.findByNameJPQL("bob");
+		AUser u = crudRepo.findByNameJPQL("bob");
 		Assert.assertNotNull(u);
 		Assert.assertNotNull(u.getDetail());
 		Assert.assertEquals(2, u.getProjects().size());
 		// test the 1st level cache
-		User u2 = crudRepo.findByName("bob");
+		AUser u2 = crudRepo.findByName("bob");
 		Assert.assertNotNull(u2);
 		Assert.assertTrue("level 1 cache is disabled", u.equals(u2));
 	}
