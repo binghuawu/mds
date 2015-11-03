@@ -20,17 +20,17 @@ public class Projects implements Serializable {
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "prj_id")
-	private Project prj;
+	private AProject prj;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private AUser user;
 
-	public Project getPrj() {
+	public AProject getPrj() {
 		return prj;
 	}
 
-	public void setPrj(Project prj) {
+	public void setPrj(AProject prj) {
 		this.prj = prj;
 	}
 

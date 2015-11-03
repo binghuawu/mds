@@ -36,7 +36,7 @@ public class AUser implements Serializable {
 
 	@OneToOne(mappedBy = "user")
 	@JoinColumn
-	private UserDetail detail;
+	private AUserDetail detail;
 
 	@OneToMany
 	@JoinColumn(name = "user_id")
@@ -66,11 +66,11 @@ public class AUser implements Serializable {
 		this.projects = projects;
 	}
 
-	public UserDetail getDetail() {
+	public AUserDetail getDetail() {
 		return detail;
 	}
 
-	public void setDetail(UserDetail detail) {
+	public void setDetail(AUserDetail detail) {
 		this.detail = detail;
 	}
 

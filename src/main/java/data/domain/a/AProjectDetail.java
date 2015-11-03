@@ -2,7 +2,7 @@ package data.domain.a;
 
 import java.io.Serializable;
 
-public class ProjectDetail implements Serializable {
+public class AProjectDetail implements Serializable {
 
 	/**
 	 * 
@@ -13,7 +13,7 @@ public class ProjectDetail implements Serializable {
 
 	private String prj;
 
-	public ProjectDetail(String user, String prj) {
+	public AProjectDetail(String user, String prj) {
 		super();
 		this.user = user;
 		this.prj = prj;

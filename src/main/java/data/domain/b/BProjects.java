@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "t_projects")
-public class Projects implements Serializable {
+public class BProjects implements Serializable {
 
 	/**
 	 * 
@@ -20,17 +20,17 @@ public class Projects implements Serializable {
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "prj_id")
-	private Project prj;
+	private BProject prj;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private BUser user;
 
-	public Project getPrj() {
+	public BProject getPrj() {
 		return prj;
 	}
 
-	public void setPrj(Project prj) {
+	public void setPrj(BProject prj) {
 		this.prj = prj;
 	}
 

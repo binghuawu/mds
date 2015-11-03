@@ -36,11 +36,11 @@ public class BUser implements Serializable {
 
 	@OneToOne(mappedBy = "user")
 	@JoinColumn
-	private UserDetail detail;
+	private BUserDetail detail;
 
 	@OneToMany
 	@JoinColumn(name = "user_id")
-	private Set<Projects> projects;
+	private Set<BProjects> projects;
 
 	public Long getId() {
 		return id;
@@ -58,19 +58,19 @@ public class BUser implements Serializable {
 		this.name = name;
 	}
 
-	public Set<Projects> getProjects() {
+	public Set<BProjects> getProjects() {
 		return projects;
 	}
 
-	public void setProjects(Set<Projects> projects) {
+	public void setProjects(Set<BProjects> projects) {
 		this.projects = projects;
 	}
 
-	public UserDetail getDetail() {
+	public BUserDetail getDetail() {
 		return detail;
 	}
 
-	public void setDetail(UserDetail detail) {
+	public void setDetail(BUserDetail detail) {
 		this.detail = detail;
 	}
 

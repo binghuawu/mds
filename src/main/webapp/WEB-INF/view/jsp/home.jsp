@@ -9,12 +9,10 @@
 
 	<P>The time on the server is ${serverTime}.</P>
 
-	<h2>
-		Counter =
-		<%=request.getSession().getAttribute("counter")%>
-	</h2>
-	<c:forEach items="${list}" var="a">
-		<c:out value="${a}"></c:out>
-	</c:forEach>
+	<ol>
+		<c:forEach items="${users}" var="a">
+			<li><c:out value="${a.name} - ${a.detail.addr} }"></c:out></li>
+		</c:forEach>
+	</ol>
 </body>
 </html>
