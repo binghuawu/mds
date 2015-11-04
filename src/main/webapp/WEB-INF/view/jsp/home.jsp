@@ -11,7 +11,13 @@
 
 	<ol>
 		<c:forEach items="${users}" var="a">
-			<li><c:out value="${a.name} - ${a.detail.addr} }"></c:out></li>
+			<li><c:out value="${a.name} - ${a.detail.addr}"></c:out>
+				<p>Projects:</p>
+				<ol>
+					<c:forEach items="${a.projects}" var="b">
+						<li><c:out value="${ b.prj.name}"></c:out></li>
+					</c:forEach>
+				</ol></li>
 		</c:forEach>
 	</ol>
 </body>
