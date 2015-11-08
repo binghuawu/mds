@@ -19,7 +19,7 @@ public class TestConfig {
 		SimpleDriverDataSource ds = new SimpleDriverDataSource();
 
 		ds.setDriverClass(org.h2.Driver.class);
-		ds.setUrl("jdbc:h2:~/user-unit-test");
+		ds.setUrl("jdbc:h2:file:~/user-unit-test");
 		ds.setUsername("sa");
 		return ds;
 	}
@@ -29,9 +29,8 @@ public class TestConfig {
 		SimpleDriverDataSource ds = new SimpleDriverDataSource();
 
 		ds.setDriverClass(org.h2.Driver.class);
-		ds.setUrl("jdbc:h2:~/user-unit-testB");
+		ds.setUrl("jdbc:h2:mem:user-unit-testB");
 		ds.setUsername("sa");
 		return ds;
 	}
-
 }

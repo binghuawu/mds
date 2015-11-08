@@ -23,7 +23,8 @@ import data.domain.a.AUser;
 import data.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = { Application.class, TestConfig.class })
+@SpringApplicationConfiguration(classes = { Application.class,
+		TestConfig.class })
 public class UserServiceBeanTest {
 
 	@Value("classpath:sql/schema-h2.sql")
