@@ -18,7 +18,7 @@ import data.domain.a.AUser;
 
 @Configuration
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory", transactionManagerRef = "transactionManager", basePackages = {
-		"data.domain.a", "data.dao.a" })
+	"data.domain.a", "data.dao.a" })
 public class JPAConfig {
 
 	@Primary
@@ -41,6 +41,7 @@ public class JPAConfig {
 		emf.setJpaDialect(new HibernateJpaDialect());
 		// hibernate specific properties
 		Properties p = new Properties();
+		p.put("hibernate.default_schema", "ABC");
 		p.put("hibernate.archive.autodetection", "class,hbm");
 		p.put("hibernate.show_sql", "true");
 		p.put("hibernate.format_sql", "true");

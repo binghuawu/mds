@@ -25,7 +25,7 @@ public interface ARepository extends CrudRepository<AUser, Long> {
 	@Query("SELECT u FROM AUser AS u where u.name=:name")
 	AUser findByNameJPQL(@Param("name") String nameToFind);
 
-	@Query(value = "SELECT count(1) FROM t_user WHERE user_name=:name", nativeQuery = true)
+	@Query(value = "SELECT count(1) FROM ABC.t_user WHERE user_name=:name", nativeQuery = true)
 	Long countByNameNative(@Param("name") String nameToFind);
 
 	// @Query(value = "SELECT new data.domain.ProjectDetail(ps.pid, ps.uid) "
